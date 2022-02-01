@@ -1,15 +1,17 @@
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
 import morgan from "morgan";
-import { NotFoundError } from "./errors/not-found-error";
+import { NotFoundError, errorHandler } from "@udemy-micro/common";
 
-import { errorHandler } from "./middleware/error-handler";
 import { authRouter } from "./routes/auth.routes";
 
 const app = express();
 
 app.use(express.json());
-app.use(morgan("dev"));
+
+if (process.env.NODE_ENV !== "test") {
+  app.use(morgan("dev"));
+}
 
 app.use("/api/users", authRouter);
 

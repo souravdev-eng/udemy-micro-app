@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import jwt from "jsonwebtoken";
-import { BadRequestError } from "../errors/bad-request-error";
+import { BadRequestError } from "@udemy-micro/common";
 import { User } from "../models/userModel";
 
 export const signUp = async (req: Request, res: Response) => {

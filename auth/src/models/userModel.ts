@@ -21,10 +21,6 @@ interface UserDocument extends mongoose.Document {
   role: string;
   image: string;
   createdAt: Date;
-  correctPassword: (
-    dbPassword: string,
-    userPassword: string
-  ) => Promise<boolean>;
 }
 
 const userSchema = new mongoose.Schema(
@@ -72,13 +68,6 @@ const userSchema = new mongoose.Schema(
 
 userSchema.statics.build = function (attars: UserAttars) {
   return new User(attars);
-};
-
-userSchema.methods.correctPassword = async function (
-  dbPassword: string,
-  userPassword: string
-): Promise<boolean> {
-  return await bcrypt.compare(dbPassword, userPassword);
 };
 
 userSchema.pre("save", async function (next) {

@@ -15,3 +15,8 @@ export const signupValidation = [
     return true;
   }),
 ];
+
+export const signInValidation = [
+  body("email").notEmpty().withMessage("Please provide your Email"),
+  body("password").notEmpty().withMessage("Please provide your Password"),
+];
