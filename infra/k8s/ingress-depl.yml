@@ -17,4 +17,10 @@ spec:
                 name: auth-srv
                 port:
                   number: 3000
-  ingressClassName: nginx
+          - path: /api/course/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: course-srv
+                port:
+                  number: 3000

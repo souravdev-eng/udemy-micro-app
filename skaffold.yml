@@ -16,3 +16,11 @@ build:
         manual:
           - dest: 'src/**/*.ts'
             src: .
+    - image: souravdeveloper/course
+      context: course
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: 'src/**/*.ts'
+            src: .
