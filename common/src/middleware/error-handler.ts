@@ -8,8 +8,6 @@ export const errorHandler = async (
   next: NextFunction
 ) => {
   if (err instanceof BaseError) {
-    console.log(err);
-
     return res.status(err.statusCode).send({ errors: err.serializeError() });
   }
   res.status(500).send([{ errors: { message: "Something went wrong!", err } }]);
