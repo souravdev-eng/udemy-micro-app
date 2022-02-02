@@ -9,4 +9,5 @@ export const requireAuth = (
   if (!req.user) {
     return next(new AuthorizationError());
   }
+  next();
 };
