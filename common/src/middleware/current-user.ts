@@ -28,11 +28,11 @@ export const currentUser = async (
     token = req.headers.authorization.split(" ")[1];
   }
   if (!token) {
-    throw new BadRequestError("You are not logged in! Please login first.");
+    return next(
+      new BadRequestError("You are not logged in! Please login first.")
+    );
   }
   const decode = jwt.verify(token, process.env.JWT_KEY!) as UserPayload;
-
-  // const currentUser = await User.findById(decode.id);
 
   req.user = decode;
 
