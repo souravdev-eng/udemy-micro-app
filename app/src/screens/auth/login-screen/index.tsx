@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -14,11 +14,21 @@ import {theme} from '../../../themes';
 import AppTextInput from '../../../components/text-input';
 import Button from '../../../components/global/Button';
 import {RootStack} from '../../../routes/navigation.types';
+import {useDispatch} from 'react-redux';
+import {userLoginAction} from '../../../redux/actions/user.action';
 
 type authScreen = NativeStackNavigationProp<RootStack, 'Register'>;
 
 const LoginScreen = () => {
   const navigation = useNavigation<authScreen>();
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = () => {
+    dispatch(userLoginAction(email, password));
+  };
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -27,9 +37,19 @@ const LoginScreen = () => {
           <Text style={styles.headingText}>Welcome Back!</Text>
         </View>
         <View style={{alignItems: 'center'}}>
-          <AppTextInput name="Email" />
-          <AppTextInput name="Password" />
-          <Button />
+          <AppTextInput
+            value={email}
+            onChangeText={t => setEmail(t)}
+            name="Email"
+            keyboardType="email-address"
+          />
+          <AppTextInput
+            value={password}
+            onChangeText={t => setPassword(t)}
+            name="Password"
+            secureTextEntry={true}
+          />
+          <Button onPress={handleLogin} title="Login" />
         </View>
         <View style={styles.footerContainer}>
           <Text style={styles.text}>

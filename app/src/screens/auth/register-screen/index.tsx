@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -14,11 +14,25 @@ import {theme} from '../../../themes';
 
 import AppTextInput from '../../../components/text-input';
 import Button from '../../../components/global/Button';
+import {useDispatch} from 'react-redux';
+import {userRegisterAction} from '../../../redux/actions/user.action';
 
 type authScreen = NativeStackNavigationProp<RootStack, 'Login'>;
 
 const RegisterScreen = () => {
   const navigation = useNavigation<authScreen>();
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConform, setPasswordConform] = useState('');
+
+  const dispatch = useDispatch();
+
+  const handelRegister = () => {
+    dispatch(userRegisterAction(name, email, password, passwordConform));
+  };
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View>
@@ -26,14 +40,34 @@ const RegisterScreen = () => {
           <Text style={styles.headingText}>Create a new account</Text>
         </View>
         <View style={{alignItems: 'center'}}>
-          <AppTextInput name="Email" />
-          <AppTextInput name="Password" />
-          <AppTextInput name="Password (8+ characters)" />
-          <Button />
+          <AppTextInput
+            value={name}
+            onChangeText={t => setName(t)}
+            name="Name"
+          />
+          <AppTextInput
+            value={email}
+            onChangeText={t => setEmail(t)}
+            name="Email"
+            keyboardType="email-address"
+          />
+          <AppTextInput
+            value={password}
+            onChangeText={t => setPassword(t)}
+            name="Password"
+            secureTextEntry={true}
+          />
+          <AppTextInput
+            value={passwordConform}
+            onChangeText={t => setPasswordConform(t)}
+            name="Password (6+ characters)"
+            secureTextEntry={true}
+          />
+          <Button title="Create new account" onPress={handelRegister} />
         </View>
         <View style={styles.footerContainer}>
           <Text style={styles.text}>
-            Have an account?{' '}
+            Have an account?{'  '}
             <TouchableWithoutFeedback
               onPress={() => navigation.navigate('Login')}>
               <Text style={styles.signText}>Sign In</Text>
@@ -69,7 +103,7 @@ const styles = StyleSheet.create({
   },
   footerContainer: {
     position: 'absolute',
-    bottom: '-40%',
+    bottom: '-20%',
     alignSelf: 'center',
   },
   text: {

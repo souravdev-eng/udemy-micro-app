@@ -4,10 +4,15 @@ import {theme} from '../../themes';
 
 const {colors, fonts} = theme;
 
-const Button = () => {
+interface ButtonProps {
+  title: string;
+  onPress: () => any;
+}
+
+const Button: React.FC<ButtonProps> = ({title, onPress}) => {
   return (
-    <TouchableOpacity activeOpacity={0.8}>
-      <Text>Create account</Text>
+    <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
+      <Text>{title}</Text>
     </TouchableOpacity>
   );
 };

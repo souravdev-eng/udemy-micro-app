@@ -5,9 +5,19 @@ import * as Styled from './styles';
 
 interface AppTextInputProps {
   name: string;
+  value: string;
+  onChangeText: (text: string) => void;
+  keyboardType?: 'email-address' | 'default';
+  secureTextEntry?: boolean;
 }
 
-const AppTextInput: React.FC<AppTextInputProps> = ({name}) => {
+const AppTextInput: React.FC<AppTextInputProps> = ({
+  name,
+  value,
+  onChangeText,
+  keyboardType,
+  secureTextEntry = false,
+}) => {
   const [active, setActive] = useState(false);
 
   return (
@@ -19,6 +29,10 @@ const AppTextInput: React.FC<AppTextInputProps> = ({name}) => {
         onBlur={() => setActive(false)}
         placeholder={`${active ? '' : name}`}
         placeholderTextColor={theme.colors.Black}
+        value={value}
+        keyboardType={keyboardType}
+        onChangeText={onChangeText}
+        secureTextEntry={secureTextEntry}
       />
     </Styled.TextInputContainer>
   );
