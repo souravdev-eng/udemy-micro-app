@@ -8,3 +8,9 @@ export * from "./middleware/current-user";
 export * from "./middleware/error-handler";
 export * from "./middleware/require-auth";
 export * from "./middleware/request-validation";
+
+export * from "./events/base-listener";
+export * from "./events/base-publisher";
+export * from "./events/course-created-event";
+export * from "./events/course-updated-event";
+export * from "./events/subjects";
