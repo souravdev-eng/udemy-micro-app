@@ -14,3 +14,4 @@ export * from "./events/base-publisher";
 export * from "./events/course-created-event";
 export * from "./events/course-updated-event";
 export * from "./events/subjects";
+export * from "./events/types/order-event-status";
