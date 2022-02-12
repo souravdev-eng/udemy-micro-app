@@ -24,3 +24,11 @@ build:
         manual:
           - dest: 'src/**/*.ts'
             src: .
+    - image: souravdeveloper/order
+      context: order
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: 'src/**/*.ts'
+            src: .
