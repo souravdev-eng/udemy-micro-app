@@ -7,6 +7,7 @@ interface CourseAttars {
 }
 
 interface CourseDocument extends mongoose.Document {
+  id: string;
   title: string;
   price: number;
   createdBy: string;
