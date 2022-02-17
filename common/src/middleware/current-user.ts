@@ -19,21 +19,24 @@ export const currentUser = async (
   res: Response,
   next: NextFunction
 ) => {
-  let token;
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
-    token = req.headers.authorization.split(" ")[1];
-  }
-  if (!token) {
-    return next(
-      new BadRequestError("You are not logged in! Please login first.")
-    );
-  }
-  const decode = jwt.verify(token, process.env.JWT_KEY!) as UserPayload;
+  try {
+    let token;
+    if (
+      req.headers.authorization &&
+      req.headers.authorization.startsWith("Bearer")
+    ) {
+      token = req.headers.authorization.split(" ")[1];
+    }
+    if (!token) {
+      return next(
+        new BadRequestError("You are not logged in! Please login first.")
+      );
+    }
+    const decode = jwt.verify(token, process.env.JWT_KEY!) as UserPayload;
 
-  req.user = decode;
-
+    req.user = decode;
+  } catch (error) {
+    // console.log(error);
+  }
   next();
 };
