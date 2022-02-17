@@ -31,9 +31,13 @@ export const signIn = async (
       );
     }
 
-    const token = jwt.sign({ id: user.id }, process.env.JWT_KEY!, {
-      expiresIn: process.env.JWT_EXP!,
-    });
+    const token = jwt.sign(
+      { id: user.id, email: user.email, name: user.name },
+      process.env.JWT_KEY!,
+      {
+        expiresIn: process.env.JWT_EXP!,
+      }
+    );
 
     res.send({ token, user });
   } catch (error) {

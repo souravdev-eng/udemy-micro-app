@@ -2,15 +2,31 @@ import mongoose from "mongoose";
 
 interface CourseAttars {
   title: string;
-  price: number;
   createdBy: string;
+  subDescription: string;
+  description: string;
+  courseImage: string;
+  whatWillLearn: string;
+  preRequirement: string;
+  language: string;
+  price: number;
+  ratingQty: number;
+  ratingAvg: number;
 }
 
 interface CourseDocument extends mongoose.Document {
-  id: string;
   title: string;
-  price: number;
   createdBy: string;
+  subDescription: string;
+  description: string;
+  courseImage: string;
+  updatedAt: string;
+  whatWillLearn: string;
+  preRequirement: string;
+  language: string;
+  price: number;
+  ratingQty: number;
+  ratingAvg: number;
 }
 
 interface CourseModel extends mongoose.Model<CourseDocument> {
@@ -24,13 +40,50 @@ const courseSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    subDescription: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    courseImage: {
+      type: String,
+      required: true,
+    },
+    ratingQty: {
+      type: Number,
+      default: 0,
+    },
+    // videos: {},
+    ratingAvg: {
+      type: Number,
+      default: 0,
+    },
     price: {
       type: Number,
       required: true,
     },
+    updatedAt: {
+      type: Date,
+      default: Date.now,
+    },
     createdBy: {
       type: String,
       required: true,
+      trim: true,
+    },
+    whatWillLearn: {
+      type: [String],
+    },
+    preRequirement: {
+      type: [String],
+    },
+    language: {
+      type: String,
+      enum: ["English", "Spanish", "French", "Hindi", "Arabic"],
+      default: "English",
     },
   },
   {

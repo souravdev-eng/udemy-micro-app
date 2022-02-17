@@ -9,9 +9,21 @@ export const createCourse = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { title, price } = req.body;
+  // console.log(req.headers);
+  const course = Course.build({
+    title: req.body.title,
+    price: req.body.price,
+    createdBy: req.user!.id,
+    courseImage: req.body.courseImage,
+    description: req.body.description,
+    language: req.body.language,
+    preRequirement: req.body.preRequirement,
+    ratingAvg: req.body.ratingAvg,
+    ratingQty: req.body.ratingQty,
+    subDescription: req.body.subDescription,
+    whatWillLearn: req.body.whatWillLearn,
+  });
 
-  const course = Course.build({ title, price, createdBy: req.user!.id });
   await course.save();
 
   await new CourseCreatedPublisher(natsWrapper.client).published({

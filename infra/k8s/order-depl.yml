@@ -25,7 +25,7 @@ spec:
             - name: NATS_CLUSTER_ID
               value: udemy
             - name: 'MONGO_URI'
-              value: 'mongodb+srv://Sourav:<password>@cluster0.przmr.mongodb.net/course?retryWrites=true&w=majority'
+              value: 'mongodb+srv://Sourav:<password>@cluster0.7qndl.mongodb.net/orders?retryWrites=true&w=majority'
             - name: JWT_EXP
               value: '90d'
             - name: JWT_KEY

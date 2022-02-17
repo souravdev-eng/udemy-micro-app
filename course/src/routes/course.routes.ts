@@ -1,5 +1,9 @@
 import express from "express";
-import { currentUser, requestValidation } from "@udemy-micro/common";
+import {
+  currentUser,
+  requestValidation,
+  requireAuth,
+} from "@udemy-micro/common";
 import {
   createCourseValid,
   updateCourseValid,
@@ -13,7 +17,13 @@ const router = express.Router();
 
 router
   .route("/")
-  .post(currentUser, createCourseValid, requestValidation, createCourse)
+  .post(
+    currentUser,
+    requireAuth,
+    createCourseValid,
+    requestValidation,
+    createCourse
+  )
   .get(showCourse);
 
 router
