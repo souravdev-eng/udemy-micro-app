@@ -1,5 +1,6 @@
 import { BadRequestError } from "@udemy-micro/common";
 import mongoose from "mongoose";
+
 import { app } from "./app";
 import { natsWrapper } from "./nats-wrapper";
 
@@ -36,19 +37,18 @@ const start = async () => {
     process.on("SIGINT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());
 
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
+    await mongoose.connect(process.env.MONGO_URI!, {
+      user: process.env.USER_NAME,
+      pass: process.env.DB_PASSWORD,
     });
+
     console.log("DB is connecting successfully...");
   } catch (error) {
     console.log(error);
   }
 
   app.listen(3000, () => {
-    console.log("Course service listening on port 3000...");
+    console.log("Course service listening on port 3000....");
   });
 };
 

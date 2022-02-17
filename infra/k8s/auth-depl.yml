@@ -17,7 +17,7 @@ spec:
           image: souravdeveloper/auth
           env:
             - name: 'MONGO_URI'
-              value: 'mongodb://auth-mongo-srv:27017/auth'
+              value: 'mongodb+srv://Sourav:<password>@cluster0.dczxv.mongodb.net/auth?retryWrites=true&w=majority'
             - name: JWT_EXP
               value: '90d'
             - name: JWT_KEY
@@ -25,6 +25,16 @@ spec:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
+            - name: USER_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-user
+                  key: USER_NAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-password
+                  key: DB_PASSWORD
 
 ---
 apiVersion: v1
