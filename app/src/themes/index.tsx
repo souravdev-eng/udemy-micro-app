@@ -1,3 +1,8 @@
+import React from 'react';
+import {Dimensions} from 'react-native';
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+
 export const theme = {
   colors: {
     Black: '#1C1D1F',
@@ -20,4 +25,13 @@ export const theme = {
     Lora_SemiBold: 'Lora-SemiBold',
     Lora_Bold: 'Lora-Bold',
   },
+  fontSizes: {
+    h1: 26,
+    h2: 22,
+    h3: 18,
+    h4: 14,
+    body: 12,
+  },
+  WIDTH: width,
+  HEIGHT: height,
 };

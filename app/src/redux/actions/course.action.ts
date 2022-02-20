@@ -11,10 +11,12 @@ export const getAllCourseAction = () => async (dispatch: any) => {
       payload: data,
     });
   } catch (error: any) {
-    console.log(error);
-    dispatch({
-      type: CourseActionType.GET_COURSE_REQUEST_FAIL,
-      payload: error.response.data.errors,
-    });
+    if (error.response) {
+      const err = error.response.data.errors;
+      dispatch({
+        type: CourseActionType.GET_COURSE_REQUEST_FAIL,
+        payload: err,
+      });
+    }
   }
 };

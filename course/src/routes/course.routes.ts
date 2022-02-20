@@ -12,6 +12,7 @@ import {
 import { updateCourse } from "./../controllers/update-course";
 import { createCourse } from "./../controllers/create-course";
 import { showCourse } from "../controllers/show-course";
+import { showOneCourse } from "../controllers/show-one-course";
 
 const router = express.Router();
 
@@ -28,6 +29,7 @@ router
 
 router
   .route("/:id")
+  .get(showOneCourse)
   .put(currentUser, updateCourseValid, requestValidation, updateCourse);
 
 export { router as courseRoute };

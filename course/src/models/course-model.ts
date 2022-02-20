@@ -10,8 +10,6 @@ interface CourseAttars {
   preRequirement: string;
   language: string;
   price: number;
-  ratingQty: number;
-  ratingAvg: number;
 }
 
 interface CourseDocument extends mongoose.Document {
@@ -27,6 +25,7 @@ interface CourseDocument extends mongoose.Document {
   price: number;
   ratingQty: number;
   ratingAvg: number;
+  students: number;
 }
 
 interface CourseModel extends mongoose.Model<CourseDocument> {
@@ -54,12 +53,12 @@ const courseSchema = new mongoose.Schema(
     },
     ratingQty: {
       type: Number,
-      default: 0,
+      default: 1990,
     },
     // videos: {},
     ratingAvg: {
       type: Number,
-      default: 0,
+      default: 4.2,
     },
     price: {
       type: Number,
@@ -68,6 +67,10 @@ const courseSchema = new mongoose.Schema(
     updatedAt: {
       type: Date,
       default: Date.now,
+    },
+    students: {
+      type: Number,
+      default: 0,
     },
     createdBy: {
       type: String,
@@ -91,6 +94,7 @@ const courseSchema = new mongoose.Schema(
       transform(doc, ret) {
         ret.id = ret._id;
         delete ret._id;
+        delete ret.__v;
       },
     },
   }
