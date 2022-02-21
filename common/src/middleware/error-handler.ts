@@ -7,8 +7,10 @@ export const errorHandler = async (
   res: Response,
   next: NextFunction
 ) => {
+  console.log(err.stack);
+
   if (err instanceof BaseError) {
     return res.status(err.statusCode).send({ errors: err.serializeError() });
   }
-  res.status(500).send([{ errors: { message: "Something went wrong!", err } }]);
+  res.status(500).send([{ errors: { message: "Something went wrong!" } }]);
 };
