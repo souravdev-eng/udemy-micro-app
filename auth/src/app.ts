@@ -7,6 +7,7 @@ import { authRouter } from "./routes/auth.routes";
 
 const app = express();
 
+app.set("trust proxy", true);
 app.use(express.json());
 
 app.use("/api/users", authRouter);

@@ -14,24 +14,14 @@ export const createOrder = async (
   if (!course) {
     return next(new NotFoundError("Course not found"));
   }
-
-  const isReserved = await Order.findOne({
-    course: course.id,
-    status: {
-      $in: [
-        OrderEventStatus.AwaitOrderOrPending,
-        OrderEventStatus.Completed,
-        OrderEventStatus.Created,
-      ],
-    },
-  });
+  const isReserved = await course.isReserved();
 
   if (isReserved) {
-    return next(new BadRequestError("Course is already reserved!"));
+    throw new BadRequestError("Course is already reserved!");
   }
 
   const expirationDate = new Date();
-  expirationDate.setSeconds(expirationDate.getSeconds() + 15 * 60);
+  expirationDate.setSeconds(expirationDate.getSeconds() + 1 * 60);
 
   const order = Order.build({
     userId: req.user!.id,
@@ -39,6 +29,8 @@ export const createOrder = async (
     expirationDate: expirationDate,
     status: OrderEventStatus.Created,
   });
+
+  await order.save();
 
   res.status(201).send(order);
 };

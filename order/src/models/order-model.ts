@@ -56,6 +56,8 @@ orderSchema.statics.build = (attrs: OrderAttars) => {
   return new Order(attrs);
 };
 
+orderSchema.methods.isReserved = async function () {};
+
 const Order = mongoose.model<OrderDoc, OrderModel>("Order", orderSchema);
 
 export { Order };

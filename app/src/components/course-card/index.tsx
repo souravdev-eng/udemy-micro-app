@@ -1,16 +1,24 @@
 import React, {FC} from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+// import { StackNavigationProp } from '@react-navigation/stack';
 
 import * as Styled from './styles';
 import {CourseCardProps} from '../course-list/index.types';
 import {theme} from '../../themes';
+import {useNavigation} from '@react-navigation/native';
+import {RootStack} from '../../routes/navigation.types';
 
 const CourseCard: FC<CourseCardProps> = course => {
+  // type NavigationProp  =StackNavigationProp<>
+
+  const navigation = useNavigation<any>();
   return (
     <Styled.Container
       activeOpacity={0.8}
-      onPress={() => console.log(course.id)}>
+      onPress={() =>
+        navigation.navigate('CourseDetails', {courseId: course.id})
+      }>
       <Image
         source={{uri: course.courseImage}}
         resizeMode="cover"

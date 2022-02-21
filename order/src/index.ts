@@ -3,6 +3,7 @@ import { BadRequestError } from "@udemy-micro/common";
 
 import { natsWrapper } from "./nats-wrapper";
 import { app } from "./app";
+import { CourseCreatedListener } from "./events/listner/course-created-listener";
 
 const start = async () => {
   if (!process.env.JWT_KEY) {
@@ -40,6 +41,8 @@ const start = async () => {
     process.on("SIGINT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());
 
+    new CourseCreatedListener(natsWrapper.client).listen();
+
     await mongoose.connect(process.env.MONGO_URI!, {
       user: process.env.USER_NAME,
       pass: process.env.DB_PASSWORD,
@@ -51,7 +54,7 @@ const start = async () => {
   }
 
   app.listen(3000, () => {
-    console.log("Order service listening on port 3000...");
+    console.log("Order service listening on port 3000....");
   });
 };
 

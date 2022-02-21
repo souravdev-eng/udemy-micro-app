@@ -10,9 +10,11 @@ const HomeScreen = () => {
   const {courses, loading} = useSelector((state: any) => state.course);
 
   let dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getAllCourseAction());
-  }, []);
+    console.log({courses, loading});
+  }, [dispatch]);
 
   return (
     <ScrollView style={{backgroundColor: '#fff', flex: 1}}>

@@ -23,7 +23,6 @@ export const updateCourse = async (
   }
 
   await new CourseUpdatedPublisher(natsWrapper.client).published({
-    createdBy: course.createdBy,
     id: course.id,
     title: course.title,
     price: course.price,

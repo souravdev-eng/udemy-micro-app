@@ -27,7 +27,6 @@ export const createCourse = async (
     id: course.id,
     title: course.title,
     price: course.price,
-    createdBy: course.createdBy,
   });
 
   res.status(201).send(course);
