@@ -6,6 +6,5 @@ export interface CourseCreatedEvent {
     id: string;
     title: string;
     price: number;
-    createdBy: string;
   };
 }
