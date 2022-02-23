@@ -11,7 +11,7 @@ export interface OrderCreatedEvent {
     course: {
       id: string;
       title: string;
-      price: string;
+      price: number;
     };
   };
 }
