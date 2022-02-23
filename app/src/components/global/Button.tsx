@@ -29,7 +29,7 @@ const TouchableOpacity = styled.TouchableOpacity`
 `;
 
 const Text = styled.Text`
-  color: ${colors.LightGray};
+  color: ${colors.LightGray1};
   font-size: 17px;
   font-weight: bold;
   font-family: ${fonts.Inter_Bold};

@@ -3,6 +3,8 @@ import { NextFunction, Request, Response } from "express";
 
 import { Order, OrderEventStatus } from "../models/order-model";
 import { Course } from "../models/course-model";
+import { OrderCreatedPublisher } from "../events/publisher/order-created-publisher";
+import { natsWrapper } from "../nats-wrapper";
 
 export const createOrder = async (
   req: Request,
@@ -30,6 +32,18 @@ export const createOrder = async (
     status: OrderEventStatus.Created,
   });
 
+  //Published an order:created event
+  new OrderCreatedPublisher(natsWrapper.client).published({
+    id: order.id,
+    userId: order.userId,
+    expirationDate: order.expirationDate.toISOString(),
+    status: order.status,
+    course: {
+      id: order.course.id,
+      title: order.course.title,
+      price: order.course.price,
+    },
+  });
   await order.save();
 
   res.status(201).send(order);

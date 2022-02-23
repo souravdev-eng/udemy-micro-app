@@ -53,7 +53,7 @@ const LoginScreen = () => {
         </View>
         <View style={styles.footerContainer}>
           <Text style={styles.text}>
-            Create new account?{'   '}
+            Create new account?
             <TouchableWithoutFeedback
               onPress={() => navigation.navigate('Register')}>
               <Text style={styles.signText}>Sign Up</Text>

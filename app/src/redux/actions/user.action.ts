@@ -10,7 +10,11 @@ export const userLoginAction =
       const {data} = await axios.post(
         `${API_URL}/users/signin`,
         {email, password},
-        {headers: {'Content-Type': 'application/json'}},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
       );
 
       dispatch({
@@ -18,12 +22,14 @@ export const userLoginAction =
         payload: data.user,
       });
     } catch (error: any) {
-      const errors = error.response.data.errors.map((e: any) => e.message);
-
-      dispatch({
-        type: UserActionType.LOGIN_REQUEST_FAIL,
-        payload: errors,
-      });
+      console.log(error);
+      if (error.response) {
+        const err = error.response.data.errors;
+        dispatch({
+          type: UserActionType.LOGIN_REQUEST_FAIL,
+          payload: err,
+        });
+      }
     }
   };
 
@@ -36,17 +42,24 @@ export const userRegisterAction =
       const {data} = await axios.post(
         `${API_URL}/users/signup`,
         {name, email, password, passwordConform},
-        {headers: {'Content-Type': 'application/json'}},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Host: 'udemy.com',
+          },
+        },
       );
       dispatch({
         type: UserActionType.REGISTER_REQUEST_SUCCESS,
         payload: data.user,
       });
     } catch (error: any) {
-      const errors = error.response.data.errors.map((e: any) => e.message);
-      dispatch({
-        type: UserActionType.REGISTER_REQUEST_FAIL,
-        payload: errors,
-      });
+      if (error.response) {
+        const err = error.response.data.errors;
+        dispatch({
+          type: UserActionType.REGISTER_REQUEST_FAIL,
+          payload: err,
+        });
+      }
     }
   };

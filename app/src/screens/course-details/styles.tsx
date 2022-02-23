@@ -8,12 +8,12 @@ export const Icon = styled(Icons)`
 
 export const ImageContainer = styled.View`
   width: ${theme.WIDTH / 1.2}px;
-  /* aspect-ratio: ${16 / 9}; */
+  aspect-ratio: ${16 / 9};
   border-color: #fff;
   align-self: center;
 `;
 
 export const Image = styled.Image`
-  width: '100%';
-  height: '100%';
+  width: 100%;
+  height: 100%;
 `;

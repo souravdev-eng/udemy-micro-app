@@ -18,7 +18,7 @@ const HomeScreen = () => {
 
   return (
     <ScrollView style={{backgroundColor: '#fff', flex: 1}}>
-      {loading || courses.length === 0 ? (
+      {loading || !courses ? (
         <Text>Loading ....</Text>
       ) : (
         <>
