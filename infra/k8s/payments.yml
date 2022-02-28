@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: payments-depl
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: payments
@@ -43,6 +43,11 @@ spec:
                 secretKeyRef:
                   name: db-password
                   key: DB_PASSWORD
+            - name: STRIPE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: stripe-secret
+                  key: STRIPE_KEY
 ---
 apiVersion: v1
 kind: Service

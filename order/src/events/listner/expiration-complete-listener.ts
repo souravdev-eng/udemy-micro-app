@@ -6,6 +6,7 @@ import {
 } from "@udemy-micro/common";
 import { Message } from "node-nats-streaming";
 import { Order } from "../../models/order-model";
+import { OrderCancelledPublisher } from "../publisher/order-cancelled-publisher";
 import { queueGroupName } from "./queue-group-name";
 
 export class ExpirationCompleteListener extends Listener<ExpirationCreatedEvent> {
@@ -22,6 +23,15 @@ export class ExpirationCompleteListener extends Listener<ExpirationCreatedEvent>
     }
 
     await order.save();
+
+    new OrderCancelledPublisher(this.client).published({
+      id: order.id,
+      status: order.status,
+      course: {
+        id: order.course.id,
+        price: order.course.price,
+      },
+    });
 
     msg.ack();
   }

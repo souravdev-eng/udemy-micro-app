@@ -5,6 +5,7 @@ import { natsWrapper } from "./nats-wrapper";
 import { app } from "./app";
 import { CourseCreatedListener } from "./events/listner/course-created-listener";
 import { ExpirationCompleteListener } from "./events/listner/expiration-complete-listener";
+import { PaymentCreatedListener } from "./events/listner/payment-created-listener";
 
 const start = async () => {
   if (!process.env.JWT_KEY) {
@@ -44,6 +45,7 @@ const start = async () => {
 
     new CourseCreatedListener(natsWrapper.client).listen();
     new ExpirationCompleteListener(natsWrapper.client).listen();
+    new PaymentCreatedListener(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI!, {
       user: process.env.USER_NAME,
@@ -51,8 +53,8 @@ const start = async () => {
     });
 
     console.log("DB is connecting successfully...");
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    console.log(error.message);
   }
 
   app.listen(3000, () => {
