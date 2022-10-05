@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: order
-          image: souravdeveloper/order
+          image: souravdeveloper/udemy-order
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
@@ -25,7 +25,7 @@ spec:
             - name: NATS_CLUSTER_ID
               value: udemy
             - name: 'MONGO_URI'
-              value: 'mongodb+srv://Sourav:<password>@cluster0.7qndl.mongodb.net/orders?retryWrites=true&w=majority'
+              value: 'mongodb+srv://sourav:<password>@cluster0.mlonucv.mongodb.net/order?retryWrites=true&w=majority'
             - name: JWT_EXP
               value: '90d'
             - name: JWT_KEY

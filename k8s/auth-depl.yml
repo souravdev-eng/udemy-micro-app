@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
         - name: auth
-          image: souravdeveloper/auth
+          image: souravdeveloper/udemy-auth
           env:
             - name: 'MONGO_URI'
-              value: 'mongodb+srv://Sourav:<password>@cluster0.dczxv.mongodb.net/auth?retryWrites=true&w=majority'
+              value: 'mongodb+srv://sourav:<password>@cluster0.h5dkpos.mongodb.net/auth?retryWrites=true&w=majority'
             - name: JWT_EXP
               value: '90d'
             - name: JWT_KEY

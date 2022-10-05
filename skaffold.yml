@@ -8,7 +8,7 @@ build:
   local:
     push: false
   artifacts:
-    - image: souravdeveloper/auth
+    - image: souravdeveloper/udemy-auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -16,7 +16,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: souravdeveloper/course
+    - image: souravdeveloper/udemy-course
       context: course
       docker:
         dockerfile: Dockerfile
@@ -24,7 +24,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: souravdeveloper/order
+    - image: souravdeveloper/udemy-order
       context: order
       docker:
         dockerfile: Dockerfile
@@ -32,7 +32,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: souravdeveloper/expiration
+    - image: souravdeveloper/udemy-expiration
       context: expiration
       docker:
         dockerfile: Dockerfile
@@ -40,11 +40,21 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: souravdeveloper/payments
+    - image: souravdeveloper/udemy-payments
       context: payments
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
           - src: 'src/**/*.ts'
+            dest: .
+    - image: souravdeveloper/udemy-client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '/*.js'
+            dest: .
+          - src: '/*.css'
             dest: .

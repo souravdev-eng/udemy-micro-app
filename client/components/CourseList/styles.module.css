@@ -1,0 +1,14 @@
+.container {
+  margin: 1.2rem 0;
+  width: 100%;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1c3243;
+  width: 60%;
+}
+.title_blue {
+  color: #401b9c;
+}
