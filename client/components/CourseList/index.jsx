@@ -1,19 +1,21 @@
 import React from 'react';
-import Image from 'next/image';
 import styles from './styles.module.css';
 import CourseCard from '../CourseCard';
+import Link from 'next/link';
 
-const CourseList = () => {
+const CourseList = ({ title, tag, data, onClick }) => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>
-        Because you viewed “
-        <span className={styles.title_blue}>
-          Complete Machine Learning & Data Science Bootcamp 2022
-        </span>
-        ”
+        {title} {tag && <span className={styles.title_blue}>"{tag}"</span>}
       </h2>
-      <CourseCard />
+      <div className={styles.row}>
+        {data.map((el, index) => (
+          <Link href={`/course-details/${index}`}>
+            <CourseCard key={index} onClick={onClick} />
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

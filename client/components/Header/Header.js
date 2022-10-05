@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import styles from './header.module.css';
 
@@ -5,7 +6,9 @@ const Header = () => {
   return (
     <div className={`${styles.grid} ${styles.grid__3__cols}`}>
       <div className={styles.logo__container}>
-        <img src={'/static/img/logo.png'} className={styles.logo__img} />
+        <Link href={'/'}>
+          <img src={'/static/img/logo.png'} className={styles.logo__img} />
+        </Link>
         <h2 className={styles.logo}>Udemy</h2>
         <div>
           <span>Categories</span>

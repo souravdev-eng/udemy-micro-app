@@ -1,3 +1,51 @@
 .container {
-  /*  */
+  width: 18rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s;
+  margin: 0 0 1.6rem 0;
+}
+.container:hover {
+  cursor: pointer;
+}
+.image {
+  transform: scale(1);
+  transition: 0.3s ease-in-out;
+}
+.image:hover {
+  transform: scale(1.1);
+}
+
+.title {
+  color: #1c3243;
+  font-size: 1rem;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin: 2px 0;
+}
+.creator_name {
+  color: #1c3243;
+  font-size: 0.8rem;
+  margin: 2px 0;
+}
+.price {
+  color: #1c3243;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 2px 0;
+}
+.rating {
+  color: #f76707;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-right: 0.2rem;
+}
+.review {
+  color: #1c3243;
+  font-size: 0.9rem;
 }
