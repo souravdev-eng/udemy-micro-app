@@ -1,0 +1,79 @@
+.center {
+  width: 55%;
+  /* background-color: aquamarine; */
+  margin: 0 auto;
+}
+
+.content_preview {
+  height: 20rem;
+  background-color: #1c1d1f;
+}
+.course_details {
+  /* width: 100%; */
+}
+
+.title {
+  font-size: 1.8rem;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.price {
+  font-size: 1.8rem;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.description {
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: 500;
+  width: 80%;
+  display: inline-block;
+}
+.course_preview {
+  border: 1px solid #000;
+  position: absolute;
+  height: 55rem;
+  width: 18%;
+  background-color: #fff;
+  top: 20%;
+  right: 10%;
+}
+.course_video {
+  height: 12rem;
+  border-bottom: 1px solid #000;
+}
+.image {
+  margin-top: 0;
+}
+.addToCart_btn {
+  background-color: #8710d8;
+  width: 90%;
+  height: 3.2rem;
+  margin: 1.2rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.textBold_white {
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 700;
+}
+.textBold_black {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 700;
+}
+.buy_btn {
+  border: 1px solid #333;
+  width: 90%;
+  height: 3.2rem;
+  margin: 1.2rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}

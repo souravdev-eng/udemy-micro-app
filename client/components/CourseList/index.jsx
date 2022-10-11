@@ -11,8 +11,8 @@ const CourseList = ({ title, tag, data, onClick }) => {
       </h2>
       <div className={styles.row}>
         {data.map((el, index) => (
-          <Link href={`/course-details/${index}`}>
-            <CourseCard key={index} onClick={onClick} />
+          <Link href={`/course-details/${index}`} key={index}>
+            <CourseCard onClick={onClick} />
           </Link>
         ))}
       </div>
